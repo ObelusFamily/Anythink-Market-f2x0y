@@ -109,6 +109,7 @@ class ItemsRepository(BaseRepository):  # noqa: WPS214
         limit: int = 20,
         offset: int = 0,
         requested_user: Optional[User] = None,
+        title: Optional[str] = None,
     ) -> List[Item]:
         query_params: List[Union[str, int]] = []
         query_params_count = 0
@@ -139,6 +140,10 @@ class ItemsRepository(BaseRepository):  # noqa: WPS214
 
         if tag:
             query_params.append(tag)
+            query_params_count += 1
+
+        if title:
+            query_params.append(title)
             query_params_count += 1
 
             # fmt: off
